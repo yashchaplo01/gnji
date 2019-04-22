@@ -244,6 +244,7 @@ bottom: 0;
       -ms-flex-direction: column;
           flex-direction: column;
 }
+
 .mdl-demo .toc h4 {
   font-size: 0.9rem;
   margin-top: 0;
