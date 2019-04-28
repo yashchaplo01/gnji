@@ -30,6 +30,119 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css" />
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.5.3/plyr.css" />
+    <style type="text/css">
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+    .wrap{
+            max-width: 100%;
+            overflow-x: hidden;
+    }
+.music-card {
+  margin: 33px auto;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+  width: 150px;
+  will-change: transform, opacity;
+  height: 250px;
+}
+.music-card > .image img {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.3;
+  height: 150px;
+  width: 150px;
+}
+.music-card > .image:after {
+  height: 50px;
+  content: '';
+  top: 100px;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  background: linear-gradient(rgba(221, 65, 127, 0), #03A9F4);
+}/*pink*/
+.music-card > .wave {
+  position: absolute;
+  height: 375px;
+  width: 375px;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  margin-left: -70%;
+  margin-top: -130%;
+  border-radius: 40%;
+  background: radial-gradient(#00BCD4,#1E88E5);
+  animation: spin 150s infinite linear;
+}
+.music-card > .wave:nth-child(2) {
+  top: 10px;
+  animation: spin 110s infinite linear;
+}
+.music-card > .wave:nth-child(3) {
+  top: 10px;
+  animation: spin 70s infinite linear;
+}
+.music-card > .info {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.music-card > .info > .title {
+  font-size: 1em;
+  font-weight: 200;
+  font-family: 'Laila', serif;
+  color: #333;
+  margin-bottom: 4px;
+}
+.music-card > .info > .artist {
+  font-family: 'Source sans pro';
+  color: #cfcfcf;
+  font-size: 0.5em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+ /******addition*********/
+     .music-card-add {
+  margin: 33px auto;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+  width: 150px;
+  will-change: transform, opacity;
+  height: 250px;
+}
+    .music-card-add > .image {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.3;
+  height: 100px;
+  width: 100px;
+        margin-top: 50px;
+        margin-left: 25px;
+}
+    
+    .music-card-add > .info > .title {
+  font-size: 1em;
+  font-weight: 300;
+  color: #333;
+  margin-top: 200px;
+font-family: 'Laila', serif;
+text-align: center;
+
+}</style>
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -53,201 +166,223 @@
                 
 
 <!--is-active-->
-
-
-                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                    <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--2-col-phone mdl-color--teal-100 mdl-color-text--white">
-                        <i class="material-icons">play_circle_filled</i>
-                    </header>
-                    <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
-                        <div class="mdl-card__supporting-text">
-                            <h4>Features</h4>
-                            Dolore ex deserunt 
-                        </div>
-                        <div class="mdl-card__actions">
-                            <a href="https://getmdl.io/components/index.html#cards-section" class="mdl-button">Read our features</a>
-                        </div>
+<div class="wrap">
+<!--1 row******-->
+<div class="row">
+        <div class="col-6">
+            <a href="#">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="https://scontent.fjai1-1.fna.fbcdn.net/v/t1.0-9/26167972_1588018487950441_7154427114717890657_n.jpg?_nc_cat=101&_nc_ht=scontent.fjai1-1.fna&oh=ebfdd730fbc883c2f183c30e5e1e77b1&oe=5D33CFDE" />
                     </div>
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-                        <i class="material-icons">more_vert</i>
-                    </button>
-                    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-                        <li class="mdl-menu__item">Lorem</li>
-                        <li class="mdl-menu__item" disabled>Ipsum</li>
-                        <li class="mdl-menu__item">Dolor</li>
-                    </ul>
-                </section>
-
-
-
-
-
-                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand">
-                            <h2 class="mdl-card__title-text">Update</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Aenan convallis.
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                View Updates
-                            </a>
-                        </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>दादा पार्श्वनाथ भजन </h2>
+                        <author class='artist'>vol-1</author>
                     </div>
-                </section>
-
-
-
-
-
-                
-                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-
-                    <div class="mdl-card mdl-shadow--4dp mdl-cell--12-col">
-                        <div class="mdl-card__media">
-                            <div class="plyr__video-embed" id="player">
-                                <iframe src="https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" allowfullscreen allowtransparency allow="autoplay"></iframe>
-                            </div>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Auckland Sky Tower, taken March 24th, 2014
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            The Sky Tower is an observation and telecommunications tower located in Auckland,
-                            New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure
-                            in the Southern Hemisphere.
-                        </div>
+                </div>
+            </a></div>
+       
+            <!--1st col2-->
+       <div class="col-6">
+            <a href="#">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="http://himalayauk.org/wp-content/uploads/2016/12/01-Parshwanath-Prabhu.jpg" />
                     </div>
-
-                </section>
-
-            </div>
-     <!--***********tab 1 yt end********-->
-
-     
-            <!--***********tab 2 message********
-            <div class="mdl-layout__tab-panel is-active" id="message">
-
-                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                     <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--2-col-phone mdl-color--teal-100 mdl-color-text--white">
-                        <i class="material-icons">play_circle_filled</i>
-                    </header>
-                    <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
-                        <div class="mdl-card__supporting-text">
-                            <h4>Features</h4>
-                            Dolore ex deserunt aute fugiat aute nulla ea
-                        </div>
-                        <div class="mdl-card__actions">
-                            <a href="#" class="mdl-button">Read our features</a>
-                        </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>दादा पार्श्वनाथ भजन </h2>
+                        <author class='artist'> vol-2</author>
                     </div>
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-                        <i class="material-icons">more_vert</i>
-                    </button>
-                    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-                        <li class="mdl-menu__item">Lorem</li>
-                        <li class="mdl-menu__item" disabled>Ipsum</li>
-                        <li class="mdl-menu__item">Dolor</li>
-                    </ul>
-                </section>
-
-
-
-
-
-                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand">
-                            <h2 class="mdl-card__title-text">Update</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Aenan convallis.
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                View Updates
-                            </a>
-                        </div>
+                </div>
+            </a></div>
+        
+          </div>
+           
+<!--2ND ROW***********-->
+<div class="row">
+        <div class="col-6">
+            <a href="#">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="http://4.bp.blogspot.com/-VBspG7-9xjU/TXx3kUF4qZI/AAAAAAAACuQ/LA9lOnR4K4Q/s1600/NakodaBhairav_fromTirth.jpg" />
                     </div>
-                </section>
-                
-            
-            </div>
-            *******the of 2 message end*******
-
-
-
-
-            *******the start photo gallary3*******
-            <div class="mdl-layout__tab-panel" id="photogallary">
-                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                    <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--2-col-phone mdl-color--teal-100 mdl-color-text--white">
-                        <i class="material-icons">play_circle_filled</i>
-                    </header>
-                    <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
-                        <div class="mdl-card__supporting-text">
-                            <h4>Features</h4>
-                            Dolore ex deserunt aute fugiat aute nulla ea
-                        </div>
-                        <div class="mdl-card__actions">
-                            <a href="#" class="mdl-button">Read our features</a>
-                        </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-1</author>
                     </div>
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-                        <i class="material-icons">more_vert</i>
-                    </button>
-                    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-                        <li class="mdl-menu__item">Lorem</li>
-                        <li class="mdl-menu__item" disabled>Ipsum</li>
-                        <li class="mdl-menu__item">Dolor</li>
-                    </ul>
-                </section>
-
-
-
-
-
-                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand">
-                            <h2 class="mdl-card__title-text">Update</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Aenan convallis.
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                View Updates
-                            </a>
-                        </div>
+                </div>
+            </a></div>
+            <!-- 2nd row col2-->
+        <div class="col-6">
+            <a href="https://shrinakodabhairav.blogspot.com/2018/11/jqueryfunction-use-strict-var-player_8.html">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="https://2.bp.blogspot.com/-Iyx0TcOzk8M/WeyRcxbVOnI/AAAAAAAA0kA/bvqazoWm-NQjqc7wKxQfA76iqN7ZGhSSgCLcBGAs/s1600/22548955_1478778112157334_1259754210602871627_o.jpg" />
                     </div>
-                </section>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-2</author>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+          
+          <!--2ND ROW***********-->
+<div class="row">
+        <div class="col-6">
+            <a href="#">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="http://4.bp.blogspot.com/-VBspG7-9xjU/TXx3kUF4qZI/AAAAAAAACuQ/LA9lOnR4K4Q/s1600/NakodaBhairav_fromTirth.jpg" />
+                    </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-1</author>
+                    </div>
+                </div>
+            </a></div>
+            <!-- 2nd row col2-->
+        <div class="col-6">
+            <a href="https://shrinakodabhairav.blogspot.com/2018/11/jqueryfunction-use-strict-var-player_8.html">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="https://2.bp.blogspot.com/-Iyx0TcOzk8M/WeyRcxbVOnI/AAAAAAAA0kA/bvqazoWm-NQjqc7wKxQfA76iqN7ZGhSSgCLcBGAs/s1600/22548955_1478778112157334_1259754210602871627_o.jpg" />
+                    </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-2</author>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>  
+    <!--2ND ROW***********-->
+<div class="row">
+        <div class="col-6">
+            <a href="#">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="http://4.bp.blogspot.com/-VBspG7-9xjU/TXx3kUF4qZI/AAAAAAAACuQ/LA9lOnR4K4Q/s1600/NakodaBhairav_fromTirth.jpg" />
+                    </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-1</author>
+                    </div>
+                </div>
+            </a></div>
+            <!-- 2nd row col2-->
+        <div class="col-6">
+            <a href="https://shrinakodabhairav.blogspot.com/2018/11/jqueryfunction-use-strict-var-player_8.html">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="https://2.bp.blogspot.com/-Iyx0TcOzk8M/WeyRcxbVOnI/AAAAAAAA0kA/bvqazoWm-NQjqc7wKxQfA76iqN7ZGhSSgCLcBGAs/s1600/22548955_1478778112157334_1259754210602871627_o.jpg" />
+                    </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-2</author>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--2ND ROW***********-->
+<div class="row">
+        <div class="col-6">
+            <a href="#">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="http://4.bp.blogspot.com/-VBspG7-9xjU/TXx3kUF4qZI/AAAAAAAACuQ/LA9lOnR4K4Q/s1600/NakodaBhairav_fromTirth.jpg" />
+                    </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-1</author>
+                    </div>
+                </div>
+            </a></div>
+            <!-- 2nd row col2-->
+        <div class="col-6">
+            <a href="https://shrinakodabhairav.blogspot.com/2018/11/jqueryfunction-use-strict-var-player_8.html">
+                <div class='music-card'>
+                    <div class='image'>
+                        <img src="https://2.bp.blogspot.com/-Iyx0TcOzk8M/WeyRcxbVOnI/AAAAAAAA0kA/bvqazoWm-NQjqc7wKxQfA76iqN7ZGhSSgCLcBGAs/s1600/22548955_1478778112157334_1259754210602871627_o.jpg" />
+                    </div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='wave'></div>
+                    <div class='info'>
+                        <h2 class='title'>भैरव दादा भजन</h2>
+                        <author class='artist'>vol-2</author>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+        
+<!--3RD ROW***********-->
+<div class="row">
+   <!--add more-->     
+        <div class="col-6">
+            <a href="#">
+                <div class='music-card-add'>
+                    <div class='image'>
+                                               <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewbox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+<circle style="fill:#1E88E5;" cx="25" cy="25" r="25"/>
+<line style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="25" y1="13" x2="25" y2="38"/>
+<line style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="37.5" y1="25" x2="12.5" y2="25"/><g></g><g></g><g></g>
+<g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+<g>
+</g>
+<g>
+</g>
+</line></line></circle></svg>
+                    </div>
+                    <div class='info'>
+                        <h2 class='title'>add more</h2>
+<author class='artist'></author>
+                        
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 
 
-
-
-
-                
-                
-            </div>
-            *******the end photo gallary 3*******
-            
-
-
-            *******the start addition 4*******
-            <div class="mdl-layout__tab-panel" id="addition">
-                                        
-
+</div>
                 
                
-            </div>
-            *******the end addition 4*******
 
+                
+
+            </div>
 
 
 
