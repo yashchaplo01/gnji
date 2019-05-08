@@ -143,11 +143,27 @@
             text-align: center;
 
         }
+        #more-button{
+  position: fixed;
+  top: 16px;
+  right: 8px;
+  z-index: 999999;
+  color: white;
+}
     </style>
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header  mdl-layout--fixed-tabs">
+        <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <li class="mdl-menu__item">Tirth details</li>
+            <li class="mdl-menu__item">option 2</li>
+            <li class="mdl-menu__item">option 3</li>
+            <li class="mdl-menu__item">option 4</li>
+          </ul>
         <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
             <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
                 <a href="index.html" class="mdl-layout__tab is-active"><i class="material-icons">audiotrack</i></a>
