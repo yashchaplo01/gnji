@@ -19,6 +19,7 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 .mdl-demo .mdl-layout__header-row {
   padding-left: 40px;
 }
@@ -42,18 +43,21 @@ html, body {
 
 .mdl-demo .mdl-layout__tab-bar {
 position: fixed;
+
 bottom: 0;
 
   z-index: 100;
   padding: 0;
   
   box-sizing: border-box;
-  height: 64PX;
+  height: 64px;
   width: 100%;
 }
 .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab {
   height: 64px;
-  line-height: 64px;
+  line-height: 20px;
+  
+  font-size: 10px;
 }
 .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab.is-active::after {
   background-color: white;
@@ -68,4 +72,7 @@ bottom: 0;
 
 .mdl-demo .mdl-menu__container {
   z-index: 99;
+}
+i{
+  margin-top: 10px;
 }
