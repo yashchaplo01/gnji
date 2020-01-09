@@ -1,0 +1,575 @@
+
+<!doctype html>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css?family=Eczar:400" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+<style type="text/css">
+    body {
+        font-family: 'Eczar', serif;
+        min-height: 100vh;
+        max-height: 100vh;
+        margin: 0;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+
+        background: linear-gradient(to right, #ee0979, #ff6a00);
+        background: -webkit-linear-gradient(to top, #232526, #414345);
+    }
+
+    body a {
+        color: inherit;
+    }
+
+    body a:not(:hover) {
+        text-decoration: none;
+    }
+
+    body #link-a-me {
+        position: absolute;
+        bottom: 80px;
+        right: 20px;
+        height: 60px;
+        width: 60px;
+        background-size: cover;
+
+        z-index: 1;
+        -webkit-animation: pop-in 120s ease-out;
+        animation: pop-in 120s ease-out;
+    }
+/*body .content {
+  overflow: hidden;
+  flex-grow: 1;
+  height: calc(100% - 80px);
+}
+body .content .lyrics {
+  padding: 50vh 0;
+  min-height: calc(100vh - 80px);
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  text-align: center;
+  transition: all .25s;
+  position: relative;
+}
+body .content .lyrics > div {
+  position: relative;
+  font-size: 20px;
+  line-height: 50px;
+  color: #000;
+  transition: all .25s;
+}
+body .content .lyrics > div:before {
+  content: attr(note);
+  position: absolute;top: 0px;left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+body .content .lyrics > div.highlighted {
+  color: #fff;
+  font-size: 25px;
+}*/
+    body .content {
+        overflow: hidden;
+        flex-grow: 1;
+        height: calc(100% - 80px);
+    }
+
+    body .content .lyrics {
+        padding: 50vh 0;
+        min-height: calc(100vh - 80px);
+        width: calc(100% - 40px);
+        margin: 0 20px;
+        text-align: center;
+        transition: all .25s;
+        position: relative;
+        bottom: 0;
+    }
+
+    body .content .lyrics>div {
+        position: relative;
+        font-size: 15px;
+        line-height: 40px;
+        color: #000;
+        transition: all .25s;
+    }
+
+    body .content .lyrics>div:before {
+        content: attr(note);
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        font-size: 18px;
+    }
+
+    body .content .lyrics>div.highlighted {
+        color: #fff;
+        font-size: 18px;
+    }
+
+    body .player {
+        position: fixed;
+        bottom: 2px;
+        right: 0;
+        left: 0;
+        top: 0px;
+        z-index: 10;
+        background: #F9F9F9;
+        color: #000;
+        min-height: 120px;
+        max-height: 120px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    body .player .left {
+        width: 120px;
+        /*background-image: url(https://pbs.twimg.com/media/DAQr5e6XkAA9Hmb.jpg);*/
+        background-size: cover;
+    }
+
+    body .player .right {
+        flex-grow: 5;
+        display: flex;
+        flex-direction: column;
+    }
+
+    body .player .right .top {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 10px;
+        margin-top: 10px;
+    }
+
+    body .player .right .top .song {
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    body .player .right .bottom {
+        display: flex;
+    }
+
+    body .player .right .bottom video {
+        flex-grow: 1;
+        height: 70px;
+    }
+
+    @-webkit-keyframes pop-in {
+        0%, 95% {
+            -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+        }
+
+        100% {
+            -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+        }
+    }
+
+    @keyframes pop-in {
+        0%, 95% {
+            -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+        }
+
+        100% {
+            -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+        }
+    }
+
+    #music{
+        
+        visibility: hidden;
+    }
+</style>
+
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    section {
+        position: fixed;
+        top: 180px;
+        bottom: 0px;
+        right: 0px;
+        margin: auto;
+        height: 100%;
+        width: 100%;
+
+        padding: 0 20px;
+        z-index: 200;
+    }
+
+    section .button {
+        height: 55px;
+        width: 55px;
+        background-color: #363636;
+        border-radius: 50px;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+        color: #000;
+        transition: all 300ms ease-in;
+        z-index: 200;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        height: 110px;
+        justify-content: space-around;
+        z-index: 200;
+    }
+
+    i {
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    .fav {
+        color: #fff;
+    }
+
+
+    .progressBar {
+        position: absolute;
+        left:130px;
+        
+        width: 60%;
+        background-color: #C0C0C0;
+        margin-bottom: 2px;
+    }
+
+    .myBar {
+        width: 0%;
+        background-color: #000;
+        height: 2px;
+    }
+    #cur{
+        position: absolute;
+        left:130px;
+        color: black;
+    }
+    #tot{
+        position: absolute;
+        left:170px;
+        color: black;
+    }
+    #slash{
+        position: absolute;
+        left:163px;
+        color: black;
+    }
+
+</style>
+
+<div class="content">
+    <div class="lyrics"></div>
+</div>
+
+<div class="player">
+    <div class="left" id="bgi" ></div>
+    <div class="right">
+        <div class="top">
+            <a class="song" id="namesong"></a>
+            <a class="artist"  id="nameartist"></a>
+        </div>
+        <div class="bottom">
+            <video id="music" name="media">
+                </video>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="progressBar">
+        <div class="myBar"></div>
+    </div>
+   <div> <span id="cur">0:00</span><span id="slash">/</span><span id="tot">0:00</span>
+    <div class="footer">
+        <i class="material-icons fav">favorite_border</i>
+        <i class="material-icons pre" style="font-size: 26px">fast_rewind</i>
+        <i class="material-icons but" style="font-size: 52px">play_circle_filled</i>
+        <i class="material-icons next" style="font-size: 26px">fast_forward</i>
+        <i class="material-icons scilent">volume_up</i>
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+    //when document will load
+    $(document).ready(function() {
+        //getting the audio ele in track
+        var track = document.getElementById("music");
+        /*making a obj to know that the music is playing or not, scilent or not & favourite or not
+         */
+        var mymusic = {
+            played: false,
+            scilent: false,
+            fav: false
+        }
+
+        $(".but").click(function() {
+            if (mymusic.played == false) {
+
+                track.play();
+                mymusic.played = true;
+                $(this).html("pause_circle_filled");
+            } else {
+                mymusic.played = false;
+                track.pause();
+                $(this).html("play_circle_filled");
+            }
+        });
+        /*it is the scilent button. if it is clicked the audio will muted*/
+        $(".scilent").click(function() {
+            if (mymusic.scilent == false) {
+                $(this).html("volume_off");
+                mymusic.scilent = true;
+                track.muted = true;
+            } else {
+                $(this).html("volume_up");
+                mymusic.scilent = false;
+                track.muted = false;
+            }
+        });
+        /*it is the fav button*/
+        $(".fav").click(function() {
+            if (mymusic.fav == false) {
+                $(this).html("favorite");
+                mymusic.fav = true;
+
+            } else {
+                $(this).html("favorite_border");
+                mymusic.fav = false;
+            }
+        });
+        /*it is the loader. when the time will update we getting the track.currentTime and update the loader.
+         */
+        track.ontimeupdate = function() {
+            //acctual position of the loader
+            let pos = (track.currentTime / track.duration) * 100 + '%';
+            //the current time
+            var cmin = Math.floor((track.currentTime) % 60);
+            /*checking that if the minute value is in 1 digit, if one like 5,7 then i will make it 2 digit like 05,07*/
+            if (cmin.toString().length == 1) {
+                cmin = '0' + cmin;
+            }
+            $("#cur").html(Math.floor((track.currentTime) / 60) + ':' + cmin);
+            //the total time
+            var tmin = Math.floor((track.duration) % 60);
+            if (tmin.toString().length == 1) {
+                tmin = '0' + tmin;
+            }
+            $("#tot").html(Math.floor((track.duration) / 60) + ':' + tmin);
+            /*changing the loader when time update*/
+            $(".myBar").css("width", pos);
+        }
+        /*it is the prev and next button. if prev is clicked the currentTime will decrease 4. and next will increase 4*/
+        $(".pre").click(function() {
+            track.currentTime -= 10;
+        });
+
+        $(".next").click(function() {
+            track.currentTime += 10;
+        });
+    });
+
+</script>
+<script>
+console.clear();
+music.src = "https://archive.org/download/NakodaValeSunLena/Nakoda%20Vale%20sun%20lena.mp3";
+document.getElementById("namesong").innerHTML = "Nakoda Vale Sun Lena";
+document.getElementById("nameartist").innerHTML = "Vaibhav Bagmar";
+document.getElementById("bgi").style.backgroundImage = "url(https://scontent.fjai1-2.fna.fbcdn.net/v/t1.0-0/c0.5.200.200/p200x200/19397134_1351323781569435_4382920462934972928_n.jpg?_nc_cat=107&_nc_ht=scontent.fjai1-2.fna&oh=569e9b7e2d13e63d3cbb512d9a3e00b9&oe=5C75E14A)";
+var _data = JSON.parse(`{"lyrics":[
+{
+"line": "",
+"note": "",
+"time": 1000
+},
+{
+"line": "नाकोड़ा वाले सुन लेना एक सवाल दीवाने का,",
+"note": "🌸1🌸",
+"time": 4000
+},
+{
+"line": "अगर समझ में आ जाए, तो भक्तो को समझा देना ।",
+"note": "",
+"time": 14000
+},
+{
+"line": "हमने अपना नियम निभाया, नाकोड़ा पैदल आने का,",
+"note": "",
+"time": 24000
+},
+{
+"line": "दादा तेरा क्या फ़र्ज़ नहीं भक्तो के घर आने का ॥",
+"note": "",
+"time": 39000
+},
+{
+"line": "नाकोड़ा वाले सुन लेना....",
+"note": "",
+"time": 50000
+},
+{
+"line": "जिसका घर छोटा सा हो, क्या उसके घर नहीं आते,",
+"note": "🌸2🌸",
+"time": 117000
+},
+{
+"line": "या फिर मुझसे प्रेम नहीं, क्यों मेरे घर नहीं आते ।",
+"note": "",
+"time": 131000
+},
+{
+"line": "अब इतना बतलादो दादा कैसे तुझे मनाने का,",
+"note": "",
+"time": 137000
+},
+{
+"line": "दादा तेरा क्या फ़र्ज़ नहीं भक्तो के घर आने का ॥",
+"note": "",
+"time": 144000
+},
+{
+"line": "",
+"note": "",
+"time": 155000
+},
+{
+"line": "ऐसा रास्ता ढूंढ़ लिया रोज मिले तो चैन आए,",
+"note": "🌸3🌸",
+"time": 191000
+},
+{
+"line": "इक दिन मिलने तुम आयो, इक दिन मिलने हम आए ।",
+"note": "",
+"time": 207000
+},
+{
+"line": "अब तो पक्का सोच लिया घर नाकोड़ा में बनाने का,",
+"note": "",
+"time": 214000
+},
+{
+"line": "दादा तेरा क्या फ़र्ज़ नहीं भक्तो के घर आने का ॥",
+"note": "",
+"time": 219000
+},
+{
+"line": "",
+"note": "",
+"time": 230000
+},
+{
+"line": "जिसका जिसका घर देखा वो क्या तेरे लगते हैं,",
+"note": "🌸4🌸",
+"time": 268000
+},
+{
+"line": "रिश्तेदारी में दादा वो क्या हमसे बढ़के हैं ।",
+"note": "",
+"time": 282000
+},
+{
+"line": "क्या मेरा हक्क नहीं बनता है तुझको घर पे बुलाने का,",
+"note": "",
+"time": 288000
+},
+{
+"line": "दादा तेरा क्या फ़र्ज़ नहीं भक्तो के घर आने का ॥",
+"note": "",
+"time": 292000
+},
+{
+"line": "नाकोड़ा वाले सुन लेना एक सवाल दीवाने का,",
+"note": "",
+"time": 308000
+},
+{
+"line": "अगर समझ में आ जाए, तो भक्तो को समझा देना ।",
+"note": "",
+"time": 312000
+},
+{
+"line": "हमने अपना नियम निभाया, नाकोड़ा पैदल आने का,",
+"note": "",
+"time": 318000
+},
+{
+"line": "दादा तेरा क्या फ़र्ज़ नहीं भक्तो के घर आने का ॥",
+"note": "",
+"time": 325000
+}
+]}`);
+var currentLine = "";
+
+function align() {
+var a = $(".highlighted").height();
+var c = $(".content").height();
+var d = $(".highlighted").offset().top - $(".highlighted").parent().offset().top;
+var e = d + (a / 2) - (c / 2);
+$(".content").animate({
+scrollTop: e + "px"
+}, {
+easing: "swing",
+duration: 250
+});
+}
+var lyricHeight = $(".lyrics").height();
+$(window).on("resize", function() {
+if ($(".lyrics").height() != lyricHeight) { //Either width changes so that a line may take up or use less vertical space or the window height changes, 2 in 1
+lyricHeight = $(".lyrics").height();
+align();
+}
+});
+$(document).ready(function() {
+$("video").on('timeupdate', function(e) {
+var time = this.currentTime * 1000;
+var past = _data["lyrics"].filter(function(item) {
+return item.time < time;
+});
+if (_data["lyrics"][past.length] != currentLine) {
+currentLine = _data["lyrics"][past.length];
+$(".lyrics div").removeClass("highlighted");
+$(`.lyrics div:nth-child(${past.length})`).addClass("highlighted"); //Text might take up more lines, do before realigning
+align();
+}
+});
+});
+generate();
+
+function generate() {
+var html = "";
+for (var i = 0; i < _data["lyrics"].length; i++) {
+html += "<div";
+if (i == 0) {
+html += ` class="highlighted"`;
+currentLine = 0;
+}
+if (_data["lyrics"][i]["note"]) {
+html += ` note="${_data["lyrics"][i]["note"]}"`;
+}
+html += ">";
+html += _data["lyrics"][i]["line"] == "" ? "•" : _data["lyrics"][i]["line"];
+html += "</div>"
+}
+$(".lyrics").html(html);
+align();
+}
+</script>
+</!doctype>
